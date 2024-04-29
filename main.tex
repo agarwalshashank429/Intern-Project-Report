@@ -8,11 +8,9 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{tocloft}
+\usepackage{pdfpages}
 \pagestyle{fancy}
 \graphicspath{{images/}}
-
-\titleformat{\chapter}[hang]
-{\normalfont\huge\bfseries}{\thechapter.}{20pt}{\Huge}
 
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} 
 \renewcommand{\cftchapfont}{\normalfont\bfseries}
@@ -21,13 +19,24 @@
 
 \input{titlepage}
 
+\pagenumbering{roman}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\centering}{\thechapter.}{20pt}{\Large}
+
 \chapter*{Declaration}
 \input{chapters/declaration}
 
 \chapter*{Acknowledgement}
 \input{chapters/acknowledgement}
 
+\titleformat{\chapter}[hang]
+{\normalfont\huge\bfseries}{\thechapter.}{20pt}{\LARGE}
+
 \tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
 
 \chapter{Summary}
 \input{chapters/Summary.tex}
@@ -45,5 +54,6 @@
 \input{chapters/Conclusion.tex}
 \chapter{References}
 \input{chapters/References.tex}
+% \includepdf[pages=-]{h.pdf}
 
 \end{document}
