@@ -1,25 +1,49 @@
 \documentclass[12pt]{report}
-
+\usepackage[a4paper, width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage{blindtext}
 \usepackage{graphicx}
 \usepackage{lipsum}
+\usepackage{times}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\pagestyle{fancy}
 \graphicspath{{images/}}
 
-\title{
-    {\includegraphics{university.png}}\\
-    {Project Report}\\
-    {\large Punjab Engineering College(D.U.)}
-    }
-\date{January--June 2024}
-\author{Shashank Agarwal}
+\titleformat{\chapter}[hang]
+{\normalfont\huge\bfseries}{\thechapter.}{20pt}{\Huge}
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} 
+\renewcommand{\cftchapfont}{\normalfont\bfseries}
 
 \begin{document}
 
 \input{titlepage}
 
 \chapter*{Declaration}
+\input{chapters/declaration}
 
 \chapter*{Acknowledgement}
+\input{chapters/acknowledgement}
 
 \tableofcontents
+
+\chapter{Summary}
+\input{chapters/Summary.tex}
+\chapter{Introduction}
+\input{chapters/Introduction.tex}
+\chapter{Work}
+\input{chapters/Work.tex}
+\chapter{Industry}
+\input{chapters/Industry.tex}
+\chapter{Review}
+\input{chapters/Review.tex}
+\chapter{Details of work and review}
+\input{chapters/Details.tex}
+\chapter{Conclusion and Future scope}
+\input{chapters/Conclusion.tex}
+\chapter{References}
+\input{chapters/References.tex}
+
 \end{document}
