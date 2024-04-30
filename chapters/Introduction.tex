@@ -1,0 +1,79 @@
+An active front-end (AFE) converter, also known as a Regen Inverter, is a grid
+interface converter that transfers power between an energy source and the
+utility grid, and between the utility grid and a load. It's a controllable
+rectifier that can exchange power between AC and DC power in both directions,
+and can regenerate power to the mains to reduce power costs.
+\section{Problem Statement}
+My team at Statcon Electronics India Ltd has been focusing on on enhancing the
+efficiency and performance of front-end converters. Presently, most active
+front-end converters utilize Silicon Controlled Rectifiers (SCRs) for
+rectification, employing a conventional 6-pulse converter configuration. My
+task was to explore and design a active front-end using Insulated Gate Bipolar
+Transistors (IGBTs) as alternatives to SCRs in the rectification process.
+
+The primary objective of this project is to investigate the feasibility and
+advantages of using IGBTs instead of SCRs for rectification in active front-end
+converters. Specifically, we aim to implement a Space Vector Pulse Width
+Modulation (SVPWM) technique to control the IGBTs effectively. This technique
+offers precise control over the switching patterns of the IGBTs, allowing for
+optimized power conversion and reduced harmonic distortion.
+
+Furthermore, the project involves the development of a sophisticated control
+algorithm to manage the operation of the IGBTs. This algorithm must facilitate
+seamless transition between pulling current from the grid (rectification mode)
+and supplying current to the grid (regeneration mode). The control system
+should ensure stable and efficient operation under varying load conditions
+while maintaining compliance with grid standards and regulations.
+
+\section{Overview}
+To understand the operation and control of the active front-end (AFE) converter
+utilizing Insulated Gate Bipolar Transistors (IGBTs), it's essential to
+understand concepts such as Space Vector Modulation (SVM), Clarke Transform,
+and Park Transform.
+
+\subsection{Space Vector Modulation}
+This technique, also known as Space Vector Pulse Width Modulation (SVPWM), is a
+method used to generate the switching signals for the IGBTs in the AFE
+converter. It offers precise control over the IGBT switching patterns by
+synthesizing the desired output voltage as a combination of multiple voltage
+vectors. SVM has eight space vectors, other space vectors are synthesized by
+alternating active and zero vectors over a switching period.
+
+\subsection{Clarke Transform}
+The Clarke Transform is a mathematical tool used to convert the three-phase AC
+currents and voltages into two-phase components. By decomposing the complex
+three-phase signals into simpler two-phase representations, the Clarke
+Transform simplifies the control and analysis of the AFE converter. This
+transformation is particularly useful in applications where two-phase control
+is more practical or where the control algorithms are designed based on
+two-phase references.
+
+\subsection{Park Transform}
+Building upon the Clarke Transform, the Park Transform further simplifies the
+control of the AFE converter by transforming the two-phase quantities into a
+stationary reference frame. This transformation aligns the reference frame with
+the voltage vector, enabling linear control strategies such as
+proportional-integral (PI) controllers.
+
+\section{Challenges}
+I faced many challenges in developing a Active front-end converter. Firstly,
+distinguishing between Sinusoidal Pulse Width Modulation (SPWM) and Space
+Vector Pulse Width Modulation (SVPWM) posed confusion due to their perceived
+similarity in operational principles. Secondly, reconciling the non-zero
+resultant vector in SVPWM with the traditional understanding of three-phase
+systems, where the vector sum equals zero, required conceptual clarification to
+ensure accurate system design and analysis. Another challenge was comprehending
+how rectification and regeneration can occur through the same IGBT bridge, as
+it involved bidirectional power flow management. Additionally, not knowing how
+to write code in MATLAB was another challenge, but learning it opened up new
+possibilities for simulating and analyzing our AFE converter designs.
+
+\section{Summary}
+This chapter addressed the problem statement concerning the exploration of
+active front-end converters (AFEs) and the transition from Silicon Controlled
+Rectifiers (SCRs) to Insulated Gate Bipolar Transistors (IGBTs) for
+rectification.It also highlighted various AFE converter topologies, providing
+brief distinctions between them. It discussed the challenges and difficulties
+encountered throughout this project, including understanding modulation
+techniques, reconciling operational principles, managing bidirectional power
+flow, and learning MATLAB coding.
