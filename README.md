@@ -1,5 +1,3 @@
-[![Report](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](https://witty-wizard.github.io/Intern-Project-Report/main.pdf)
-
 # Internship Project Report: Space Vector Modulation
 
 This repository contains the LaTeX files for the internship project report focusing on Space Vector Modulation (SVM). The project report documents the research, analysis, and findings related to Space Vector Modulation techniques.
