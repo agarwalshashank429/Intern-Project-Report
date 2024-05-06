@@ -1,8 +1,8 @@
-An active front-end (AFE) converter, also known as a Regen Inverter, is a grid
-interface converter that transfers power between an energy source and the
-utility grid, and between the utility grid and a load. It's a controllable
-rectifier that can exchange power between AC and DC power in both directions,
-and can regenerate power to the mains to reduce power costs.
+An active front-end (AFE) converter, is a grid interface converter that
+transfers power between an energy source and the utility grid, and between the
+utility grid and a load. It's a controllable rectifier that can exchange power
+between AC and DC power in both directions, and can regenerate power to the
+mains to reduce power costs.
 \section{Problem Statement}
 My team at Statcon Electronics India Ltd has been focusing on on enhancing the
 efficiency and performance of front-end converters. Presently, most active
@@ -26,20 +26,67 @@ should ensure stable and efficient operation under varying load conditions
 while maintaining compliance with grid standards and regulations.
 
 \section{Overview}
-To understand the operation and control of the active front-end (AFE) converter
-utilizing Insulated Gate Bipolar Transistors (IGBTs), it's essential to
-understand concepts such as Space Vector Modulation (SVM), Clarke Transform,
-and Park Transform.
+A three-phase AC to DC converter is essential for many power electronics system
+such as Variable frequency drive (VFD), battery charger, uninterruptible power
+supplies (UPS).
 
-\subsection{Space Vector Modulation}
-This technique, also known as Space Vector Pulse Width Modulation (SVPWM), is a
-method used to generate the switching signals for the IGBTs in the AFE
-converter. It offers precise control over the IGBT switching patterns by
-synthesizing the desired output voltage as a combination of multiple voltage
-vectors. SVM has eight space vectors, other space vectors are synthesized by
-alternating active and zero vectors over a switching period.
+Traditionally diode rectifiers or thyristor rectifier are used for AC to DC
+conversion, both these rectifiers behave as non- linear loads. The currents
+drawn by the rectifiers include a fundamental component and harmonic
+components. The voltage drop across the line inductance due to the harmonic
+currents distorts the mains voltage. Consequently, the other loads connected to
+the mains are also fed with a distorted voltage.
+
+\subsection{Traditional Rectifier}
+Diode rectifier, depicted in Figure~\ref{fig:diode_rectifier}, produces a
+constant DC voltage, which is a function of the system voltage. A thyristor
+based rectifier can produce a variable DC voltage. But, both these topology
+behave as non-linear loads.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Diode Rectifier.png}
+    \caption{AC to DC Conversion using Diode Rectifier.}
+    \label{fig:diode_rectifier}
+\end{figure}
+
+\subsection{IGBT Rectifier}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{IGBT Rectifer.png}
+    \caption{Schematic diagram of
+        a front-end converter (FEC)}
+    \label{fig:igbt_rectifier}
+\end{figure}
+\noindent
+IGBT Rectifer, depicted in Figure~\ref{fig:igbt_rectifier}, draws near
+sinusoidal current from grid. The power factor as well as DC Voltage can be
+adjusted. Since it is connected to line side it is called line side or front
+end converter.
+
+The converter consists of a three-phase bridge, a high capacitance on the dc
+side and a three-phase inductor in the line-side. The voltage at the mid point,
+$V_i$ is pulse width modulated (PWM) in nature. The voltage consists of a
+fundamental component (at line frequency) besides harmonic components around
+the switching frequency of the converter. Being at high frequencies, these
+harmonic components are well filtered by the line inductor. Hence the current
+is near sinusoidal. The fundamental component of $V_i$ controls the flow of
+real and reactive power.
+
+\subsection{Vector Control}
+Vector control is a popular method for control of three-phase induction motors.
+The basic idea of this scheme is to control the flux producing and the
+torque-producing components of motor current. The outer control loop controls
+the speed of the motor, while the inner loop controls the components of current
+vector, which correspond to torque and flux. Similar control approach can be
+used for FEC also. Here, the three-phase grid voltages and line currents are
+converted into an equivalent two-phase system, called stationary reference
+frame (Subsection~\ref{clarke}). These quantities are further transformed into
+a reference frame called synchronous reference frame, which revolves at the
+grid frequency (Subsection~\ref{park}).
 
 \subsection{Clarke Transform}
+\label{clarke}
 The Clarke Transform is a mathematical tool used to convert the three-phase AC
 currents and voltages into two-phase components. By decomposing the complex
 three-phase signals into simpler two-phase representations, the Clarke
@@ -48,12 +95,56 @@ transformation is particularly useful in applications where two-phase control
 is more practical or where the control algorithms are designed based on
 two-phase references.
 
+\[
+    \begin{bmatrix}
+        V_\alpha \\
+        V_\beta  \\
+        V_0      \\
+    \end{bmatrix}
+    = \frac{2}{3}
+    \begin{bmatrix}
+        1           & -\frac{1}{2}       & -\frac{1}{2}        \\
+        0           & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \\
+        \frac{1}{2} & \frac{1}{2}        & -\frac{1}{2}        \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        V_a \\
+        V_b \\
+        V_c \\
+    \end{bmatrix}
+\]
+
 \subsection{Park Transform}
+\label{park}
 Building upon the Clarke Transform, the Park Transform further simplifies the
 control of the AFE converter by transforming the two-phase quantities into a
 stationary reference frame. This transformation aligns the reference frame with
 the voltage vector, enabling linear control strategies such as
 proportional-integral (PI) controllers.
+
+\[
+    \begin{bmatrix}
+        V_d \\
+        V_q \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \cos(\theta) & -\sin(\theta) \\
+        \sin(\theta) & \cos(\theta)  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        V_\alpha \\
+        V_\beta  \\
+    \end{bmatrix}
+\]
+
+\subsection{Space Vector Modulation}
+This technique, also known as Space Vector Pulse Width Modulation (SVPWM), is a
+method used to generate the switching signals for the IGBTs in the AFE
+converter. It offers precise control over the IGBT switching patterns by
+synthesizing the desired output voltage as a combination of multiple voltage
+vectors. SVM has eight space vectors, other space vectors are synthesized by
+alternating active and zero vectors over a switching period.
 
 \section{Challenges}
 I faced many challenges in developing a Active front-end converter. Firstly,
@@ -67,13 +158,3 @@ how rectification and regeneration can occur through the same IGBT bridge, as
 it involved bidirectional power flow management. Additionally, not knowing how
 to write code in MATLAB was another challenge, but learning it opened up new
 possibilities for simulating and analyzing our AFE converter designs.
-
-\section{Summary}
-This chapter addressed the problem statement concerning the exploration of
-active front-end converters (AFEs) and the transition from Silicon Controlled
-Rectifiers (SCRs) to Insulated Gate Bipolar Transistors (IGBTs) for
-rectification.It also highlighted various AFE converter topologies, providing
-brief distinctions between them. It discussed the challenges and difficulties
-encountered throughout this project, including understanding modulation
-techniques, reconciling operational principles, managing bidirectional power
-flow, and learning MATLAB coding.
