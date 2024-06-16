@@ -81,62 +81,9 @@ the speed of the motor, while the inner loop controls the components of current
 vector, which correspond to torque and flux. Similar control approach can be
 used for FEC also. Here, the three-phase grid voltages and line currents are
 converted into an equivalent two-phase system, called stationary reference
-frame (Subsection~\ref{clarke}). These quantities are further transformed into
+frame . These quantities are further transformed into
 a reference frame called synchronous reference frame, which revolves at the
-grid frequency (Subsection~\ref{park}).
-
-\subsection{Clarke Transform}
-\label{clarke}
-The Clarke Transform is a mathematical tool used to convert the three-phase AC
-currents and voltages into two-phase components. By decomposing the complex
-three-phase signals into simpler two-phase representations, the Clarke
-Transform simplifies the control and analysis of the AFE converter. This
-transformation is particularly useful in applications where two-phase control
-is more practical or where the control algorithms are designed based on
-two-phase references.
-
-\[
-    \begin{bmatrix}
-        V_\alpha \\
-        V_\beta  \\
-        V_0      \\
-    \end{bmatrix}
-    = \frac{2}{3}
-    \begin{bmatrix}
-        1           & -\frac{1}{2}       & -\frac{1}{2}        \\
-        0           & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \\
-        \frac{1}{2} & \frac{1}{2}        & -\frac{1}{2}        \\
-    \end{bmatrix}
-    \begin{bmatrix}
-        V_a \\
-        V_b \\
-        V_c \\
-    \end{bmatrix}
-\]
-
-\subsection{Park Transform}
-\label{park}
-Building upon the Clarke Transform, the Park Transform further simplifies the
-control of the AFE converter by transforming the two-phase quantities into a
-stationary reference frame. This transformation aligns the reference frame with
-the voltage vector, enabling linear control strategies such as
-proportional-integral (PI) controllers.
-
-\[
-    \begin{bmatrix}
-        V_d \\
-        V_q \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        \cos(\theta) & -\sin(\theta) \\
-        \sin(\theta) & \cos(\theta)  \\
-    \end{bmatrix}
-    \begin{bmatrix}
-        V_\alpha \\
-        V_\beta  \\
-    \end{bmatrix}
-\]
+grid frequency .
 
 \subsection{Space Vector Modulation}
 This technique, also known as Space Vector Pulse Width Modulation (SVPWM), is a

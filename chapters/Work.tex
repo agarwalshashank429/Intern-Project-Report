@@ -1,0 +1,55 @@
+\section{Simulation}
+Before initiating the implementation phase, it was imperative to conduct a
+comprehensive simulation of the front end using Simulink/MATLAB. The simulation
+setup involved importing a three-phase source from MATLAB and configuring the
+necessary parameters for voltage and current measurements.
+
+\subsection{MATLAB Function Blocks in Simulation}
+To emulate the behavior of a microcontroller in the simulation environment,
+MATLAB function blocks were extensively utilized. These function blocks
+provided a familiar coding environment, resembling the programming paradigms
+employed in microcontroller firmware development. By encapsulating custom
+algorithms and control logic within MATLAB function blocks, it was possible to
+simulate complex control strategies and signal processing techniques with ease.
+This approach not only facilitated rapid prototyping and testing but also
+provided invaluable insights into the real-time behavior of the system. The use
+of MATLAB function blocks bridged the gap between simulation and
+implementation, enabling seamless transition from design validation to hardware
+deployment.
+
+\subsection{Voltage Transformation}
+The focus was on transforming the measured line voltages from the three-phase
+source into the alpha-beta frame using the Clarke transform. This
+transformation facilitated easier analysis and control of the three-phase
+system.
+
+\subsection{Phase-Locked Loop (PLL)}
+Incorporating a Phase-Locked Loop (PLL) block was essential for converting the
+voltages from the alpha-beta frame to the dq rotating reference frame.
+Additionally, the PLL provided the angle theta of the voltage vector, crucial
+for subsequent control strategies.
+
+\subsection{Current Measurement and Transformation}
+Here, the line current flowing into the front end was measured, and using
+Clarke and Park transform blocks, it was converted to the dq reference frame.
+The angle theta obtained from the PLL was utilized for this transformation.
+
+\subsection{Current Regulation}
+Regulating the current flowing into the front end was pivotal for ensuring
+stable operation and adherence to system constraints. Two PI controllers were
+employed to compare the measured current to a predetermined set current value
+and generate control signals for current regulation.
+
+\subsection{Voltage Calculation and Transformation}
+This subsection involved adding the control signals (delta Vq and delta Vd)
+obtained from the PI controllers to the Vq and Vd components obtained from the
+PLL. These voltages were then converted back to the Clarke frame using the
+inverse Park transform.
+
+\subsection{Gate Timing Calculation}
+Utilizing the voltages calculated in the previous step (V alpha * and V beta
+*), gate timings for the three-phase active front end were determined. These
+gate timings dictated the switching patterns of the IGBTs, essential for
+controlling the flow of current through the front end.
+
+\section{implementation}
