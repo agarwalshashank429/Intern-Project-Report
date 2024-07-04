@@ -1,39 +1,13 @@
-\begin{lstlisting}[style=MATLAB]
-% This is a simple MATLAB script
-t = 0:0.01:2*pi;
-y = sin(t);
+In this sections I will provide a detailed explanation of each component and
+process involved in the implementation phase of the project.
 
-figure;
-plot(t, y);
-title('Sine Wave');
-xlabel('Time (s)');
-ylabel('Amplitude');
-\end{lstlisting}
-\begin{lstlisting}[style=Python]
-# This is a simple Python script
-import numpy as np
-import matplotlib.pyplot as plt
-
-t = np.arange(0, 2*np.pi, 0.01)
-y = np.sin(t)
-
-plt.plot(t, y)
-plt.title('Sine Wave')
-plt.xlabel('Time (s)')
-plt.ylabel('Amplitude')
-plt.show()
-\end{lstlisting}
-\begin{lstlisting}[style=C]
-// This is a simple C program
-#include <stdio.h>
-#include <math.h>
-
-int main() {
-    double t, y;
-    for (t = 0; t <= 2 * M_PI; t += 0.01) {
-        y = sin(t);
-        printf("t: %f, y: %f\n", t, y);
-    }
-    return 0;
-}
-\end{lstlisting}
+\section{Clarke transform}
+\input{chapters/details/clarke.tex}
+\section{Park transform}
+\input{chapters/details/park.tex}
+\section{PID Controller}
+\input{chapters/details/pid.tex}
+\section{Phase Lock Loop (PLL)}
+\input{chapters/details/pll.tex}
+\section{Matlab/SIMULINK function blocks}
+\input{chapters/details/matlabfunction.tex}

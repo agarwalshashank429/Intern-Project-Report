@@ -1,0 +1,68 @@
+\begin{equation}
+    V_\alpha = \frac{2}{3}(V_a - \frac{1}{2} V_b - \frac{1}{2} V_c)
+\end{equation}
+\begin{equation}
+    V_\beta = \frac{2}{3}(\frac{\sqrt{3}}{2} V_b - \frac{\sqrt{3}}{2} V_c)
+\end{equation}
+
+\noindent
+Converting this to matrix form, we get:
+\begin{equation}
+    \begin{bmatrix}
+        V_\alpha \\
+        V_\beta  \\
+        V_0
+    \end{bmatrix}
+    =\frac{2}{3}
+    \begin{bmatrix}
+        1 & -\frac{1}{2}       & -\frac{1}{2}       \\
+        0 & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
+        1 & 1                  & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        V_a \\
+        V_b \\
+        V_c
+    \end{bmatrix}
+\end{equation}
+or we can write it as:
+\begin{equation}
+    V_{\alpha\beta0} = T_{abc-\alpha\beta} V_{abc}
+\end{equation}
+
+\noindent
+Where,
+\begin{equation*}
+    V_{\alpha\beta} = \begin{bmatrix}
+        V_\alpha \\
+        V_\beta  \\
+        V_0
+    \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+    V_{abc} = \begin{bmatrix}
+        V_a \\
+        V_b \\
+        V_c
+    \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+    T_{abc-\alpha\beta} = \frac{2}{3}
+    \begin{bmatrix}
+        1 & -\frac{1}{2}       & -\frac{1}{2}       \\
+        0 & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
+        1 & 1                  & 1
+    \end{bmatrix}
+\end{equation*}
+
+\noindent
+For a balanced three-phase system where \( V_a + V_b + V_c = 0 \), the equations simplify to:
+\begin{equation*}
+    V_\alpha = V_a
+\end{equation*}
+\begin{equation*}
+    V_\beta = \frac{2}{\sqrt{3}} (V_a + 2 V_b)
+\end{equation*}
+\begin{equation*}
+    V_0 = 0
+\end{equation*}
