@@ -11,6 +11,8 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgf-umlcd}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \graphicspath{{images/}}
 
@@ -72,7 +74,6 @@
 \newcommand{\industry}{Mr.Sarv Parteek Singh}
 \newcommand{\director}{Mr.M.S. Saini}
 
-
 \begin{document}
 
 \input{titlepage}
@@ -109,7 +110,9 @@
 \input{chapters/Details.tex}
 \chapter{Conclusion and Future scope}
 \input{chapters/Conclusion.tex}
-\chapter{References}
-\input{chapters/References.tex}
+\begin{thebibliography}{9}
+    \input{chapters/References.tex}
+\end{thebibliography}
+
 
 \end{document}
