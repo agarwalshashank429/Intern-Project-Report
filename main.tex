@@ -14,7 +14,16 @@
 \usepackage{tikz}
 \usepackage{pgf-umlcd}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\usetikzlibrary{positioning, shapes.geometric, arrows}
 \graphicspath{{images/}}
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{sum} = [draw, fill=blue!20, circle, minimum size=1cm, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pidblock} = [draw, dashed, inner sep=0.5cm, rounded corners]
 
 % Define custom colors
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -113,6 +122,5 @@
 \begin{thebibliography}{9}
     \input{chapters/References.tex}
 \end{thebibliography}
-
 
 \end{document}

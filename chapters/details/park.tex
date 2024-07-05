@@ -21,17 +21,18 @@ aligned with the rotor flux (direct axis), while \( q \) represents the
 component perpendicular to the rotor flux (quadrature axis). This separation
 facilitates independent control of the torque-producing and magnetizing
 currents in field-oriented control strategies, essential for optimizing the
-performance of electric machines.
-\begin{figure}[h]
+performance of electric machines.\begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{park-coordinate.png}
-    \caption{Park Frame of reference}
-    \label{fig:Park Frame of reference}
+    \includegraphics[width=0.6\textwidth]{park-clarke.png}
+    \caption{Park Transform}
+    \label{fig:Park Transform}
 \end{figure}
-\subsection{Derivation of the Park Transform Matrix}
 
 To derive the Park transformation matrix, we first define the transformation
-angles \( \theta \) corresponding to the rotor angle. The transformation matrix
+angle \( \theta \), which corresponds to the rotor angle. By applying an axis
+rotation and rotating the Clarke frame by \( \theta \), we obtain the
+transformation matrix \( T_{dq0} \).
+
 \( T_{dq0} \) is given by:
 
 \begin{equation*}
@@ -45,10 +46,11 @@ angles \( \theta \) corresponding to the rotor angle. The transformation matrix
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{park-clarke.png}
-    \caption{Park Transform}
-    \label{fig:Park Transform}
+    \includegraphics[width=0.4\textwidth]{park-coordinate.png}
+    \caption{Park Frame of reference}
+    \label{fig:Park Frame of reference}
 \end{figure}
+\subsection{Derivation of the Park Transform Matrix}
 
 \noindent
 Where \( \theta \) is the electrical angle of the rotor position.
