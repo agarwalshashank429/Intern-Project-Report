@@ -1,5 +1,57 @@
+The alpha-beta transform, also known as the Clarke transform, is a fundamental
+mathematical tool used to simplify the analysis of three-phase electric
+machines. It is named after Edith Clarke, who published papers in 1937 and 1938
+introducing modified calculation methods for handling unbalanced three-phase
+problems~\cite{clarke_transform}.
+
 \subsection{What is Clarke Transform?}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{clarketransform2d.png}
+    \caption{Clarke Frame of reference}
+    \label{fig:Clarke Frame of reference}
+\end{figure}
+
+E. Clarke developed the method for transforming stationary circuits into a
+stationary reference frame. In Clarke’s transformation, the two-phase
+stationary variables are represented as $\alpha$ and $\beta$, with the
+$\alpha$-axis and $\beta$-axis being orthogonal to each other~\cite{DSP-Based
+    Electromechanical Motion Control}.This transformation simplifies the analysis
+of three-phase electrical systems by projecting the original quantities onto a
+stationary reference frame. It decomposes the three-phase variables into two
+orthogonal components: alpha ($\alpha$) and beta ($\beta$), which are aligned
+with the stationary reference axes, called the Clarke reference frame. The
+transform matrix is given by:
+\begin{equation*}
+    T_{\alpha\beta0} = \frac{2}{3}
+    \begin{bmatrix}
+        1 & -\frac{1}{2}       & -\frac{1}{2}       \\
+        0 & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
+        1 & 1                  & 1
+    \end{bmatrix}
+\end{equation*}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Clarke-transformation-coordinates.png}
+    \caption{Clarke transformation}
+    \label{fig:Clarke transformation}
+\end{figure}
+
 \subsection{Derivation of the Clarke Transform Matrix}
+
+To derive the Clarke transformation, we resolve the three-phase quantities \(
+V_a, V_b, V_c \) along the \(\alpha\) and \(\beta\) axes. The transformed
+quantities \( V_\alpha \) and \( V_\beta \) are simplified according to Figure
+\ref{fig:Clarke transformation Derivation}. The normalization term \(
+\frac{2}{3} \) ensures that the magnitudes of the quantities in the Clarke
+frame match those of the three-phase frame.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{clarkederivation.png}
+    \caption{Clarke transformation Derivation}
+    \label{fig:Clarke transformation Derivation}
+\end{figure}
 \begin{equation}
     V_\alpha = \frac{2}{3}(V_a - \frac{1}{2} V_b - \frac{1}{2} V_c)
 \end{equation}
@@ -29,13 +81,13 @@ Converting this to matrix form, we get:
 \end{equation}
 or we can write it as:
 \begin{equation}
-    V_{\alpha\beta0} = T_{abc-\alpha\beta} V_{abc}
+    V_{\alpha\beta0} = T_{\alpha\beta0} V_{abc}
 \end{equation}
 
 \noindent
 Where,
 \begin{equation*}
-    V_{\alpha\beta} = \begin{bmatrix}
+    V_{\alpha\beta0} = \begin{bmatrix}
         V_\alpha \\
         V_\beta  \\
         V_0
@@ -49,7 +101,7 @@ Where,
     \end{bmatrix}
 \end{equation*}
 \begin{equation*}
-    T_{abc-\alpha\beta} = \frac{2}{3}
+    T_{\alpha\beta0} = \frac{2}{3}
     \begin{bmatrix}
         1 & -\frac{1}{2}       & -\frac{1}{2}       \\
         0 & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
