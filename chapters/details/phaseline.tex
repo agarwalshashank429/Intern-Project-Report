@@ -1,11 +1,24 @@
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{Phase_Voltages.png}
-    \caption{Phase Voltages}
-    \label{fig:Phase Voltages}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Phase_Voltages.png}
+        \caption{Phase Voltages}
+        \label{fig:Phase Voltages}
+    \end{subfigure}
+    \begin{tikzpicture}
+        \node at (0,0) {};
+        \draw[->, thick] (0,2.5) -- (1,2.5);
+    \end{tikzpicture}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Line_Voltages.png}
+        \caption{Line Voltages}
+        \label{fig:Line Voltages}
+    \end{subfigure}
 \end{figure}
 
-\subsection{Importance of Measuring Phase Voltage}
+\subsection{Why Measure Phase Voltage?}
 In three-phase electrical systems, the measurement of phase voltages becomes
 critical due to the unavailability of the neutral point. This unavailability
 means that direct measurement of line voltages is not feasible. Phase voltage
