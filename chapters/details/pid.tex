@@ -200,19 +200,6 @@ There are two main types of Feedforward Control:
     \item \textbf{Dynamic Feedforward Control}: Dynamic Feedforward Control considers the dynamic response of the process to disturbances. It incorporates the time constant and dynamics of the disturbance to provide a more accurate compensation. This approach requires a model of the process dynamics or real-time measurement of the disturbance.
 \end{enumerate}
 
-\subsubsection{Implementation Considerations}
-
-Implementing Feedforward Control requires accurate knowledge of the process
-dynamics and disturbance characteristics. It may involve:
-
-\begin{itemize}
-    \item \textbf{Modeling}: Developing mathematical models or using empirical data to understand how disturbances affect the process.
-
-    \item \textbf{Measurement}: Installing sensors to measure disturbance variables directly, if feasible.
-
-    \item \textbf{Integration}: Integrating the feedforward signal with the PID controller's output in a coordinated manner to achieve optimal control performance.
-\end{itemize}
-
 \subsubsection{Benefits of Feedforward Control}
 
 \begin{itemize}
@@ -245,15 +232,15 @@ controllers are set based on these values, as shown in Table
     \label{tab:ziegler-nichols}
     \begin{tabular}{|l|c|c|c|c|c|}
         \hline
-        Control Type         & \( K_p \)                  & \( T_i \)                  & \( T_d \)                   & \( K_i \)                      & \( K_d \)                      \\
+        Control Type         & \( K_p \)                  & \( T_i \)                  & \( T_d \)                   & \( K_i \)                              & \( K_d \)                      \\
         \hline
-        P                    & \( 0.5 K_u \)              & -                          & -                           & -                              & -                              \\
-        PI                   & \( 0.45 K_u \)             & \( 0.8 \overline{3} T_u \) & -                           & \( 0.54 \frac{K_u}{T_u} \)     & -                              \\
-        PD                   & \( 0.8 K_u \)              & -                          & \( 0.125 T_u \)             & -                              & \( 0.10 \frac{K_u}{T_u} \)     \\
-        Classic PID          & \( 0.6 K_u \)              & \( 0.5 T_u \)              & \( 0.125 T_u \)             & \( 1.2 \frac{K_u}{T_u} \)      & \( 0.075 \frac{K_u}{T_u} \)    \\
-        Pessen Integral Rule & \( 0.7 K_u \)              & \( 0.4 T_u \)              & \( 0.15 T_u \)              & \( 1.75 \frac{K_u}{T_u} \)     & \( 0.105 \frac{K_u}{T_u} \)    \\
-        Some Overshoot       & \( 0.3 \overline{3} K_u \) & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.6 \overline{6} K_u/T_u \) & \( 0.1 \overline{1} K_u T_u \) \\
-        No Overshoot         & \( 0.2 K_u \)              & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.4 \frac{K_u}{T_u} \)      & \( 0.6 \overline{6} K_u T_u \) \\
+        P                    & \( 0.5 K_u \)              & -                          & -                           & -                                      & -                              \\
+        PI                   & \( 0.45 K_u \)             & \( 0.8 \overline{3} T_u \) & -                           & \( 0.54 \frac{K_u}{T_u} \)             & -                              \\
+        PD                   & \( 0.8 K_u \)              & -                          & \( 0.125 T_u \)             & -                                      & \( 0.10 \frac{K_u}{T_u} \)     \\
+        Classic PID          & \( 0.6 K_u \)              & \( 0.5 T_u \)              & \( 0.125 T_u \)             & \( 1.2 \frac{K_u}{T_u} \)              & \( 0.075 \frac{K_u}{T_u} \)    \\
+        Pessen Integral Rule & \( 0.7 K_u \)              & \( 0.4 T_u \)              & \( 0.15 T_u \)              & \( 1.75 \frac{K_u}{T_u} \)             & \( 0.105 \frac{K_u}{T_u} \)    \\
+        Some Overshoot       & \( 0.3 \overline{3} K_u \) & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.6 \overline{6} \frac{K_u}{T_u} \) & \( 0.1 \overline{1} K_u T_u \) \\
+        No Overshoot         & \( 0.2 K_u \)              & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.4 \frac{K_u}{T_u} \)              & \( 0.6 \overline{6} K_u T_u \) \\
         \hline
     \end{tabular}
 \end{table}
@@ -261,16 +248,3 @@ controllers are set based on these values, as shown in Table
 The ultimate gain \( K_u \) is defined as \( 1/M \), where \( M \) is the
 amplitude ratio. The parameters \( K_i \) and \( K_d \) are derived from \( K_p
 \), \( T_i \), and \( T_d \).
-
-The PID controller computes the correction \( u(t) \) from the error \( e(t) \)
-using the equation:
-
-\[
-    u(t) = K_p \left( e(t) + \frac{1}{T_i} \int_0^t e(\tau) \, d\tau + T_d \frac{de(t)}{dt} \right)
-\]
-
-which has the transfer function:
-
-\[
-    U(s) = K_p \left( 1 + \frac{1}{T_i s} + T_d s \right) E(s) = K_p \left( \frac{T_d T_i s^2 + T_i s + 1}{T_i s} \right) E(s)
-\]
