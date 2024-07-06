@@ -261,16 +261,3 @@ controllers are set based on these values, as shown in Table
 The ultimate gain \( K_u \) is defined as \( 1/M \), where \( M \) is the
 amplitude ratio. The parameters \( K_i \) and \( K_d \) are derived from \( K_p
 \), \( T_i \), and \( T_d \).
-
-The PID controller computes the correction \( u(t) \) from the error \( e(t) \)
-using the equation:
-
-\[
-    u(t) = K_p \left( e(t) + \frac{1}{T_i} \int_0^t e(\tau) \, d\tau + T_d \frac{de(t)}{dt} \right)
-\]
-
-which has the transfer function:
-
-\[
-    U(s) = K_p \left( 1 + \frac{1}{T_i s} + T_d s \right) E(s) = K_p \left( \frac{T_d T_i s^2 + T_i s + 1}{T_i s} \right) E(s)
-\]
