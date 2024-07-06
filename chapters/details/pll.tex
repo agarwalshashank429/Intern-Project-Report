@@ -1,15 +1,37 @@
+\begin{figure}[ht]
+    \centering
+    \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+            % Nodes
+            \node [input] (Vb) {7};
+            \node [input, below of=Vb, node distance=0.6cm] (Vc) {};
+            \node [input, above of=Vb, node distance=0.6cm] (Va) {};
+            \node [block, right of=Vb, node distance=2.5cm] (clarke) {Clarke Transform};
+            \node [block, right of=clarke, node distance =4cm] (park) {Park Transform};
+            \node [block, right of=park, node distance =4.5cm,yshift=-0.5cm] (pid) {PI \\ Controller};
+            \node [output, right of=park, node distance=2.5cm,yshift=0.5cm] (output_Vq) {};
+            \node [sum, right of=pid,node distance=2.5cm](sumff){$+$};
+            \node [block, above of=sumff,node distance=3cm, text width=2.5em](ff){$\omega_{FF}$};
+            \node [block, right of=sumff,node distance=2cm, text width=2.5em](integrator){$\frac{1}{S}$};
+            \node [output, right of=integrator,node distance =2.5cm](theta_o){};
 
-% \begin{tikzpicture}[auto, node distance=2cm,>=latex']
-%     % Nodes
-%     \node [input, name=Va] (Va) {Va};
-%     \node [input, name=Vb] (Vb) {Vb};
-%     \node [input, name=Vc] (Vc) {Vc};
-%     \node [block, right of=Vb, node distance=3cm] (abc2dq0) {Clarke Transform};
+            % Connections
+            \draw [->] (Va) -- node [pos=0] {$V_a$} ([yshift=+0.6cm]clarke.west);
+            \draw [->] (Vb) -- node [pos=0] {$V_b$} (clarke.west);
+            \draw [->] (Vc) -- node [pos=0] {$V_c$} ([yshift=-0.6cm]clarke.west);
 
-%     % Connections
-%     \draw [->] ([yshift=+0.5cm]Va) -- {lol}([yshift=+0.5cm]abc2dq0.west);
-%     \draw [->] (Vb) -- (abc2dq0.west);
-%     \draw [->] ([yshift=-0.5cm]Vc) -- ([yshift=-0.5cm]abc2dq0.west);
+            \draw [->] ([yshift=+0.5cm]clarke.east) -- node [pos=0.2] {$V_\alpha$} ([yshift=+0.5cm]park.west);
+            \draw [->] ([yshift=-0.5cm]clarke.east) -- node [pos=0.2] {$V_\beta$}([yshift=-0.5cm]park.west);
+            \draw [->] ([yshift=+0.5cm]park.east) -- node [pos=0.3] {$V_d$} (output_Vq);
+            \draw [->] ([yshift=-0.5cm]park.east) -- node [pos=0.2] {$V_q$} (pid.west);
+            \draw [->] (pid.east) -- (sumff.west);
+            \draw [->] (ff.south) -- (sumff.north);
+            \draw [->] (sumff.east) -- (integrator.west);
+            \draw [->] (integrator.east) -- node [pos=0.8] {$\theta$} (theta_o);
+            \draw [->] ([xshift=0.5cm]integrator.east) |-([yshift=-2.5cm]integrator.east) -| (park.south) ;
 
-% \end{tikzpicture}
-
+        \end{tikzpicture}
+    }
+    \caption{Three Phase PLL.}
+    \label{fig:PLL}
+\end{figure}
