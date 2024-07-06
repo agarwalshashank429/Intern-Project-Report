@@ -1,8 +1,8 @@
-The Proportional Integral Derivative (PID) Controller is the most widely used
-control technique in industry. The popularity of PID Controller because of
-their robust performance in a wide range of operating condition and its simple
-functionality. Industrial processes are subjected to variation in parameters
-and parameters perturbations.
+The Proportional Integral Derivative (PID) Controller\cite{pid-wikipedia} is
+the most widely used control technique in industry. The popularity of PID
+Controller because of their robust performance in a wide range of operating
+condition and its simple functionality. Industrial processes are subjected to
+variation in parameters and parameters perturbations.
 
 \begin{figure}[ht]
     \centering
@@ -83,14 +83,14 @@ variations in raw material quality, or environmental factors can significantly
 impact the Process Variable. These disturbances are often unpredictable and can
 lead to deviations from the setpoint, requiring the PID controller to react and
 correct the error. However, by the time the disturbance affects the Process
-Variable, some amount of error may have already occurred.
+Variable, some amount of error may have already occurred.\\
 
-Feedforward Control addresses this issue by using a model or direct measurement
-of the disturbance to predict its effect on the Process Variable. This
-prediction is used to generate a feedforward signal that is added to the PID
-controller's output. By doing so, the controller compensates for the
-disturbance before it affects the Process Variable, thereby reducing the error
-and improving the response time.
+Feedforward Control\cite{feedforward-wikipedia} addresses this issue by using a
+model or direct measurement of the disturbance to predict its effect on the
+Process Variable. This prediction is used to generate a feedforward signal that
+is added to the PID controller's output. By doing so, the controller
+compensates for the disturbance before it affects the Process Variable, thereby
+reducing the error and improving the response time.
 
 \subsubsection{Types of Feedforward Control}
 
@@ -228,3 +228,49 @@ feedback from the Process Variable, integrating Feedforward Control can enhance
 their performance by mitigating the effects of disturbances. By combining both
 feedback and feedforward strategies, industrial processes can achieve more
 robust and responsive control.
+
+\subsection{Zeigler-Nichols method}
+The Ziegler--Nichols tuning method is a heuristic method for tuning a PID
+controller, developed by John G. Ziegler and Nathaniel B. Nichols
+\cite{ziegler-nichols}. It involves setting the integral (\( T_i \)) and
+derivative (\( T_d \)) gains to zero and gradually increasing the proportional
+gain (\( K_p \)) until stable oscillations occur at the ultimate gain (\( K_u
+\)) and oscillation period (\( T_u \)). The parameters for different types of
+controllers are set based on these values, as shown in Table
+\ref{tab:ziegler-nichols}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Ziegler--Nichols Method Parameters for PID Controllers}
+    \label{tab:ziegler-nichols}
+    \begin{tabular}{|l|c|c|c|c|c|}
+        \hline
+        Control Type         & \( K_p \)                  & \( T_i \)                  & \( T_d \)                   & \( K_i \)                      & \( K_d \)                      \\
+        \hline
+        P                    & \( 0.5 K_u \)              & -                          & -                           & -                              & -                              \\
+        PI                   & \( 0.45 K_u \)             & \( 0.8 \overline{3} T_u \) & -                           & \( 0.54 \frac{K_u}{T_u} \)     & -                              \\
+        PD                   & \( 0.8 K_u \)              & -                          & \( 0.125 T_u \)             & -                              & \( 0.10 \frac{K_u}{T_u} \)     \\
+        Classic PID          & \( 0.6 K_u \)              & \( 0.5 T_u \)              & \( 0.125 T_u \)             & \( 1.2 \frac{K_u}{T_u} \)      & \( 0.075 \frac{K_u}{T_u} \)    \\
+        Pessen Integral Rule & \( 0.7 K_u \)              & \( 0.4 T_u \)              & \( 0.15 T_u \)              & \( 1.75 \frac{K_u}{T_u} \)     & \( 0.105 \frac{K_u}{T_u} \)    \\
+        Some Overshoot       & \( 0.3 \overline{3} K_u \) & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.6 \overline{6} K_u/T_u \) & \( 0.1 \overline{1} K_u T_u \) \\
+        No Overshoot         & \( 0.2 K_u \)              & \( 0.5 T_u \)              & \( 0.3 \overline{3}{T_u} \) & \( 0.4 \frac{K_u}{T_u} \)      & \( 0.6 \overline{6} K_u T_u \) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+The ultimate gain \( K_u \) is defined as \( 1/M \), where \( M \) is the
+amplitude ratio. The parameters \( K_i \) and \( K_d \) are derived from \( K_p
+\), \( T_i \), and \( T_d \).
+
+The PID controller computes the correction \( u(t) \) from the error \( e(t) \)
+using the equation:
+
+\[
+    u(t) = K_p \left( e(t) + \frac{1}{T_i} \int_0^t e(\tau) \, d\tau + T_d \frac{de(t)}{dt} \right)
+\]
+
+which has the transfer function:
+
+\[
+    U(s) = K_p \left( 1 + \frac{1}{T_i s} + T_d s \right) E(s) = K_p \left( \frac{T_d T_i s^2 + T_i s + 1}{T_i s} \right) E(s)
+\]
