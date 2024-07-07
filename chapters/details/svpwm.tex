@@ -1,0 +1,31 @@
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.6\linewidth}{!}{
+        \begin{tikzpicture}[auto, node distance=2cm, >=latex']
+            % Define the origin
+            \coordinate (O) at (0,0);
+
+            % Define the vectors
+            \coordinate (V1) at ({3*cos(0)},{3*sin(0)});
+            \coordinate (V2) at ({3*cos(60)},{3*sin(60)});
+            \coordinate (V3) at ({3*cos(120)},{3*sin(120)});
+            \coordinate (V4) at ({3*cos(180)},{3*sin(180)});
+            \coordinate (V5) at ({3*cos(240)},{3*sin(240)});
+            \coordinate (V6) at ({3*cos(300)},{3*sin(300)});
+
+            % Draw the vectors
+            \draw[->, thick] (O) -- (V1) node[midway, below right,pos=1] {$\mathbf{V_1}$};
+            \draw[->, thick] (O) -- (V2) node[midway, below right,pos=1] {$\mathbf{V_2}$};
+            \draw[->, thick] (O) -- (V3) node[midway, above right,pos=1] {$\mathbf{V_3}$};
+            \draw[->, thick] (O) -- (V4) node[midway, above,pos=1] {$\mathbf{V_4}$};
+            \draw[->, thick] (O) -- (V5) node[midway, above left,pos=1] {$\mathbf{V_5}$};
+            \draw[->, thick] (O) -- (V6) node[midway, below left,pos=1] {$\mathbf{V_6}$};
+
+            % Draw the axes
+            \draw[->] (-4,0) -- (4,0) node[right] {$\alpha$};
+            \draw[->] (0,-4) -- (0,4) node[above] {$\beta$};
+        \end{tikzpicture}
+    }
+    \caption{Space Vector}
+    \label{fig:SVM}
+\end{figure}
