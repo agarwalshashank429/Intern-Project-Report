@@ -7,7 +7,31 @@ associated with fictitious windings rotating with the rotor. He referred the
 stator and rotor variables to a reference frame fixed on the rotor. From the
 rotor point of view, all the variables can be observed as constant values
 \subsection{What is Park Transform?}
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.5\linewidth}{!}{
+        \begin{tikzpicture}
+            % Draw the coordinate axes
+            \draw[->] (0,0) -- (5,0) node[anchor=north] {$\alpha$};
+            \draw[->] (0,0) -- (0,5) node[anchor=east] {$\beta$};
+            \draw[->, thick] (0,0) -- (-4,3) node[anchor=east] {$q$};
+            \draw[->, thick] (0,0) -- (3,4) node[anchor=west] {$d$};
 
+            % Draw the angle theta
+            \draw (1,0) arc (0:53:1);
+            \node at (1.2,0.6) {$\theta$};
+
+            % Draw the omega arc
+            \draw[->] (2,2.67) arc (53:90:1);
+            \node at (2.3,3.5) {$\omega$};
+
+            % Draw the right angle symbol
+            \draw (0.3,0) -- (0.3,0.3) -- (0,0.3);
+        \end{tikzpicture}
+    }
+    \caption{Park Frame of reference}
+    \label{Park Frame of reference}
+\end{figure}
 The Park transform shifts the perspective from the traditional stationary
 reference frame to a rotating reference frame that moves with the rotor. This
 transformation effectively decouples the complex interactions between variables
@@ -21,7 +45,8 @@ aligned with the rotor flux (direct axis), while \( q \) represents the
 component perpendicular to the rotor flux (quadrature axis). This separation
 facilitates independent control of the torque-producing and magnetizing
 currents in field-oriented control strategies, essential for optimizing the
-performance of electric machines.\begin{figure}[h]
+performance of electric machines.
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{park-clarke.png}
     \caption{Park Transform}
@@ -33,8 +58,6 @@ angle \( \theta \), which corresponds to the rotor angle. By applying an axis
 rotation and rotating the Clarke frame by \( \theta \), we obtain the
 transformation matrix \( T_{dq0} \).
 
-\( T_{dq0} \) is given by:
-
 \begin{equation*}
     T_{dq0} =
     \begin{bmatrix}
@@ -44,12 +67,6 @@ transformation matrix \( T_{dq0} \).
     \end{bmatrix}
 \end{equation*}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{park-coordinate.png}
-    \caption{Park Frame of reference}
-    \label{fig:Park Frame of reference}
-\end{figure}
 \subsection{Derivation of the Park Transform Matrix}
 
 \noindent

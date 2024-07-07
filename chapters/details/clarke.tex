@@ -5,9 +5,35 @@ introducing modified calculation methods for handling unbalanced three-phase
 problems~\cite{E. Clarke}.
 
 \subsection{What is Clarke Transform?}
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{clarketransform2d.png}
+    \resizebox{0.4\linewidth}{!}{
+        \begin{tikzpicture}[auto, node distance=2cm, >=Latex]
+            % Define the origin
+            \coordinate (O) at (0,0);
+
+            % Define the vectors
+            \coordinate (A) at ({3*cos(0)},{3*sin(0)});
+            \coordinate (B) at ({3*cos(120)},{3*sin(120)});
+            \coordinate (C) at ({3*cos(240)},{3*sin(240)});
+            \coordinate (alpha) at ({3.8*cos(0)},{3.8*sin(0)});
+            \coordinate (beta) at ({3.8*cos(90)},{3.8*sin(90)});
+
+            % Draw the main axes
+            \draw[->] (O) -- (B) node[above] {$B$-axis};
+            \draw[->] (O) -- (C) node[below] {$C$-axis};
+            \draw[->] (O) -- (A) node[below] {$A$-axis};
+
+            % Draw the Clarke axes
+            \draw[thick, ->] (O) -- (alpha) node[below right] {$\alpha$-axis};
+            \draw[thick, ->] (O) -- (beta)  node[above right] {$\beta$-axis};
+
+            % Draw the angular velocity indication
+            % \draw[->] (1,1.5) arc[start angle=60, end angle=90, radius=1.5cm];
+            % \node at (1.5,2) {$\omega=0$};
+
+        \end{tikzpicture}
+    }
     \caption{Clarke Frame of reference}
     \label{fig:Clarke Frame of reference}
 \end{figure}
@@ -30,14 +56,28 @@ transform matrix is given by:
         1 & 1                  & 1
     \end{bmatrix}
 \end{equation*}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Clarke-transformation-coordinates.png}
-    \caption{Clarke transformation}
-    \label{fig:Clarke transformation}
-\end{figure}
+
 
 \subsection{Derivation of the Clarke Transform Matrix}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Clarke-transformation-coordinates.png}
+        \caption{Clarke transformation}
+        \label{fig:Clarke transformation}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{clarkederivation.png}
+        \caption{Clarke transformation Derivation}
+        \label{fig:Clarke transformation Derivation}
+    \end{subfigure}
+    \caption{Clarke transformation and its derivation}
+    \label{fig:combined_Clarke}
+\end{figure}
+
 
 To derive the Clarke transformation, we resolve the three-phase quantities \(
 V_a, V_b, V_c \) along the \(\alpha\) and \(\beta\) axes. The transformed
@@ -46,12 +86,6 @@ quantities \( V_\alpha \) and \( V_\beta \) are simplified according to Figure
 \frac{2}{3} \) ensures that the magnitudes of the quantities in the Clarke
 frame match those of the three-phase frame.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{clarkederivation.png}
-    \caption{Clarke transformation Derivation}
-    \label{fig:Clarke transformation Derivation}
-\end{figure}
 \begin{equation*}
     V_\alpha = \frac{2}{3}(V_a - \frac{1}{2} V_b - \frac{1}{2} V_c)
 \end{equation*}
