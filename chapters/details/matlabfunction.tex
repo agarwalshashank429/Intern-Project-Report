@@ -1,0 +1,35 @@
+\begin{figure}[ht]
+    \centering
+    \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+            % Nodes
+            \node [input, name=Vbc] {};
+            \node [input, name=Vab, above of=Vbc,node distance=0.7cm] {};
+            \node [input, name=Vca, below of=Vbc, node distance=0.7cm] {};
+            \node [block, right of=Vbc,node distance=3cm] (phaseline) {Phase-Line Transform};
+            \node [block, right of=phaseline,node distance=4cm] (PLL) {Phase Lock Loop};
+            \node [block, right of=PLL,node distance=8cm] (iclarke) {Inverse Clarke Transform};
+
+            \node [input, name=Ibc, below of=Vbc, node distance=5cm] {};
+            \node [input, name=Iab, above of=Ibc,node distance=0.7cm] {};
+            \node [input, name=Ica, below of=Ibc, node distance=0.7cm] {};
+            \node [block, below of=phaseline, node distance=5cm] (park) {Park Transform};
+
+            % Connections
+            \draw[->] (Vab) node[above]{$V_{ab}$} -- ([yshift=0.7cm]phaseline.west);
+            \draw[->] (Vbc) node[above]{$V_{bc}$} -- (phaseline.west);
+            \draw[->] (Vca) node[above]{$V_{ca}$} -- ([yshift=-0.7cm]phaseline.west);
+
+            \draw[->] ([yshift=0.7cm]phaseline.east) node[above right]{$V_{a}$} -- ([yshift=0.7cm]PLL.west);
+            \draw[->] (phaseline.east) node[above right]{$V_{b}$} -- (PLL.west);
+            \draw[->] ([yshift=-0.7cm]phaseline.east) node[above right]{$V_{c}$} -- ([yshift=-0.7cm]PLL.west);
+
+            \draw[->] (Iab) node[above]{$I_{ab}$} -- ([yshift=0.7cm]park.west);
+            \draw[->] (Ibc) node[above]{$I_{bc}$} -- (park.west);
+            \draw[->] (Ica) node[above]{$I_{ca}$} -- ([yshift=-0.7cm]park.west);
+
+        \end{tikzpicture}
+    }
+    \caption{Active Front End Converter}
+    \label{fig:FEC}
+\end{figure}
