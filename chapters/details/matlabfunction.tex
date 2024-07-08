@@ -87,6 +87,12 @@ control, and gate time calculation.
 \end{figure}
 
 \subsection{Three-phase Grid}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{grid.png}
+    \caption{Three Phase Grid in SIMULINK}
+    \label{fig:Grid}
+\end{figure}
 To begin, I created a three-phase grid using SIMULINK's AC source block. This
 grid represents the primary input power supply to the system. By connecting
 three AC source blocks in a star configuration, I established a three-phase AC
@@ -95,7 +101,12 @@ measure the grid voltage, which I labeled as $INPUT$ to maintain clarity within
 the simulation environment.
 
 \subsection{Three-Phase Bridge}
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{bridge.png}
+    \caption{Front End Conveerter IGBT Bridge}
+    \label{fig:Bridge}
+\end{figure}
 To proceed, I constructed a three-phase bridge using Insulated Gate Bipolar
 Transistors (IGBTs) within SIMULINK. Each IGBT gate was labeled as G1, G2, and
 G3.\\
@@ -139,6 +150,13 @@ it in a MATLAB function block.
     Vc = PhaseVoltages(3);
     end
 \end{lstlisting}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{linefunction.png}
+    \caption{Phase-Line Voltage Conversion function}
+    \label{fig:phase}
+\end{figure}
 
 \subsection{Three-Phase Phase-Locked Loop (PLL)}
 The PLL is crucial for accurately measuring the phase and frequency of the grid
@@ -236,6 +254,13 @@ end
 \end{lstlisting}
 
 \subsection{Reference Signal Generator}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{matlabsvpwm.png}
+    \caption{Space Vector Modulation }
+    \label{fig:spaceyfinal}
+\end{figure}
 The Reference Signal Generator is responsible for generating the reference
 signals required for controlling the active front end. These signals,
 represented in the \( \alpha\beta0 \) frame, are used to create space vector
@@ -313,6 +338,13 @@ signals that control the IGBTs in the active front end, ensuring proper
 modulation of the output voltage.
 
 \subsection{Current Controller}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{Final.jpg}
+    \caption{Closed Loop Simulation}
+    \label{fig:final}
+\end{figure}
 
 The Current Controller plays a crucial role in regulating the output voltage to
 achieve precise current control. It operates by converting the line currents
